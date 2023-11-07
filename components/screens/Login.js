@@ -22,66 +22,71 @@ const LogIn = ({navigation}) => {
   const [pass, onChangePassword] = useState('Password');
 
   const handleLogin = async () => {
-    // console.log('Handle Sign In')
-    await signInWithEmailAndPassword(auth, 'akhzar@gmail.com', '123456')
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        // console.log("user data,", user);
-        console.log("user data,", user);
-        // ...
+    navigation.navigate('HomeScreen');
+    console.log('Handle Sign In')
+    
+    // await signInWithEmailAndPassword(auth, 'akhzar@gmail.com', '123456')
+    //   .then((userCredential) => {
+    //     // Signed in
+    //     const user = userCredential.user;
+    //     // console.log("user data,", user);
+    //     console.log("user data,", user);
+    //     // ...
 
-        AsyncStorage.setItem("myuser", JSON.stringify(user));
-        navigation.navigate('HomeScreen');
+    //     AsyncStorage.setItem("myuser", JSON.stringify(user));
+    //     // navigation.navigate('HomeScreen');
       
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log("Error,", errorMessage);
-        // ..
-      });
+    //   })
+    //   .catch((error) => {
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     console.log("Error,", errorMessage);
+    //     // ..
+    //   });
   };
 
   const handleSignup = async () => {
 
     // console.log('LOGGED')
-    await createUserWithEmailAndPassword(auth, 'akhzar1@gmail.com', '123456')
-      .then((userCredential) => {
-        // Sign Up
-        // console.log("Succesfull");
-        const user = userCredential.user;
-        console.log("user data,", user);
+    // await createUserWithEmailAndPassword(auth, 'akhzar1@gmail.com', '123456')
+    //   .then((userCredential) => {
+    //     // Sign Up
+    //     // console.log("Succesfull");
+    //     const user = userCredential.user;
+    //     console.log("user data,", user);
         
-        // write code to save your data in firestore
-        // FirebaseError.firestore.write(user.uid,user.uid)
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log('Error Code == ',errorCode)
-        console.log('Error Message == ',errorMessage)
-        // ..
-      });
+    //     // write code to save your data in firestore
+    //     // FirebaseError.firestore.write(user.uid,user.uid)
+    //     // ...
+    //   })
+    //   .catch((error) => {
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     console.log('Error Code == ',errorCode)
+    //     console.log('Error Message == ',errorMessage)
+    //     // ..
+    //   });
+
   };
   
   const signInGuest = async () => {
     
-    await signInAnonymously(auth).then((userCredential)=>{
-      console.log('Done',userCredential)
-    })
+    // await signInAnonymously(auth).then((userCredential)=>{
+    //   console.log('Done',userCredential)
+    // })
 
   }
 
 
   useEffect(()=>{
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        console.log('useEffect to check sign IN', user.email)
-        // navigation.reset({ index: 0, routes: [{ name: "Home" }] });
-      }
-    });
+    
+    // auth.onAuthStateChanged((user) => {
+    //   if (user) {
+    //     console.log('useEffect to check sign IN', user.email)
+    //     // navigation.reset({ index: 0, routes: [{ name: "Home" }] });
+    //   }
+    // });
+
   },[])
 
   return (
